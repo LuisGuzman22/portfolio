@@ -1,16 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Suspense } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  RouteComponentProps,
+} from 'react-router-dom';
+import { routes } from './config/routes';
+import { IRoute } from './config/routes/route.interface';
+import Loading from './components/common/Loading';
+
 import './App.css';
-import { Home } from './components/Home';
-import { Header } from './components/Header';
 
-function App() {
-  return (
-    <div className="App">
-      <Header/>
-      <Home/>
-    </div>
-  );
-}
-
+const App = () => (
+  <Suspense fallback={Loading()}>
+    <Router>
+      <Switch>
+        {routes.map((route: IRoute, index: number) => (
+          <Route
+            key={index}
+            exact={true}
+            path={route.path}
+            render={(props: RouteComponentProps) => (
+              <Suspense fallback={Loading()}>
+                <route.component {...props} routes={route.routes} />
+              </Suspense>
+            )}
+          />
+        ))}
+      </Switch>
+    </Router>
+  </Suspense>
+);
 export default App;
