@@ -21,7 +21,7 @@ export const CourseCard = (course: any) => {
                         exact
                         to={`blog/${course.path}`}
                     >
-                        &#60;a href='' /&#62;
+                        &#60;a href='blog/{course.path}' /&#62;
                        </NavLink>
                 </div>
             </div>
