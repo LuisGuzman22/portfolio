@@ -10,9 +10,11 @@ import { IRoute } from './config/routes/route.interface';
 import Loading from './components/common/Loading';
 
 import './App.css';
+import { Header } from './components/common/Header';
 
 const App = () => (
   <Suspense fallback={Loading()}>
+    <Header/>
     <Router>
       <Switch>
         {routes.map((route: IRoute, index: number) => (
