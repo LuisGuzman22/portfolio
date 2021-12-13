@@ -5,7 +5,7 @@ import './index.css'
 
 ReactDOM.render(
   <React.StrictMode>
-      <label>asd</label>
+      <App />
   </React.StrictMode>,
   document.getElementById('root'),
 );
